@@ -9,6 +9,9 @@ namespace Blog.DAL
             : base(options)
         {
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite(@"Data Source=BlogDatabase.db");
         
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
