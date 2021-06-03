@@ -18,7 +18,7 @@ namespace Blog
             var host = CreateHostBuilder(args).Build();
 
             CreateDbIfNotExists(host);
-
+            
             host.Run();
         }
 
@@ -31,7 +31,8 @@ namespace Blog
                 {
                     var context = services.GetRequiredService<DatabaseContext>();
                     context.Database.EnsureCreated();
-                    Console.WriteLine("Success");
+                    DbInitializer.Initialize(context);
+                    
                 }
                 catch (Exception ex)
                 {
